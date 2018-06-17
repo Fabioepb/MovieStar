@@ -1,0 +1,28 @@
+<ion-content padding margin-top>
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col margin-right>
+          <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" [(ngModel)]="username"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row margin-top margin-bottom>
+        <ion-col margin-right>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row padding-vertical>
+        <ion-col text-center>
+          <button ion-button outline block (click)="onLogin();">LOGIN</button>
+          <h2 margin-top>Don't have an account? <a (click)="toRegister();">Register here!</a></h2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
