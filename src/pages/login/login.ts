@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,ToastController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
+import { HomePage } from '../home/home';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-login',
@@ -15,20 +15,19 @@ export class LoginPage {
   successAlert: any;
   failAlert: any;
 
-  constructor(public navCtrl: NavController, public Storage: NativeStorage, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public Storage: NativeStorage, public toastCtrl: ToastController) {
     this.username = null;
     this.password = null;
 
-    this.successAlert = this.alertCtrl.create({
-      title: 'Success!',
-      subTitle: "You have logged in to the World's worst app!",
-      buttons: ["Ok"]
+    this.successAlert = this.toastCtrl.create({
+      message: 'You have Logged in!',
+      duration: 1800,
+      position: "top",
     });
 
-    this.failAlert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: "You have failed logged in to the World's worst app!",
-      buttons: ["Thank u jesus"]
+    this.failAlert = this.toastCtrl.create({
+      message: 'Invalid username/password',
+      duration: 2200
     });
   }
 
@@ -41,6 +40,7 @@ export class LoginPage {
       .then(data => {
         if (this.username == data.user_username && this.password == data.user_password) {
           this.successAlert.present();
+          this.navCtrl.setRoot(HomePage);
         } else {
           this.failAlert.present();
         }

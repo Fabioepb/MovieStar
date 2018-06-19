@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-register',
@@ -12,7 +11,7 @@ export class RegisterPage {
   password:string;
   email:string;
   date:any;
-  constructor(public navCtrl: NavController, public Storage: NativeStorage, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public Storage: NativeStorage, public toastCtrl: ToastController) {
   }
 
   registrarUser(){
@@ -22,17 +21,12 @@ export class RegisterPage {
       user_email: this.email,
       user_date: this.date
     }).then(()=>{
-      const alert = this.alertCtrl.create({
-        title: 'Success!',
-        subTitle: "You have created an account in the World's worst app!",
-        buttons: [{
-          text:"Ok?",
-          handler: event =>{
-            this.navCtrl.pop();
-          }
-        }]
+      const toast = this.toastCtrl.create({
+        message: "Account created succesfully!",
+        duration: 2000
       });
-      alert.present();
+      toast.present();
+      this.navCtrl.pop();
     })
   }
 }
