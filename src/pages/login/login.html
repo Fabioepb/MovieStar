@@ -1,8 +1,12 @@
+<ion-header class="new-background">
+  <ion-title padding text-center><b style="color:white">Log In</b></ion-title>
+</ion-header>
+
 <ion-content padding margin-top>
-  <ion-card>
+  <ion-card color="#FFFF" >
     <ion-grid>
-      <ion-row>
-        <ion-col margin-right>
+      <ion-row margin-top>
+        <ion-col>
           <ion-item>
             <ion-label floating>Username</ion-label>
             <ion-input type="text" [(ngModel)]="username"></ion-input>
@@ -10,7 +14,7 @@
         </ion-col>
       </ion-row>
       <ion-row margin-top margin-bottom>
-        <ion-col margin-right>
+        <ion-col>
           <ion-item>
             <ion-label floating>Password</ion-label>
             <ion-input type="password" [(ngModel)]="password"></ion-input>

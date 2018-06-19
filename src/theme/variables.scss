@@ -37,7 +37,11 @@ $colors: (
   primary:    rgb(36, 36, 36),
   secondary:  #5e5e5e,
   danger:     #f53d3d,
-  light:      #f4f4f4
+  light:      #f4f4f4,
+  title: (
+      base: rgb(46, 46, 46),
+      contrast: #f4f4f4
+    ),
 );
 
 
