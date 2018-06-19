@@ -10,48 +10,63 @@ import { NativeStorage } from '@ionic-native/native-storage';
 })
 
 export class LoginPage {
-  username: string;
-  password: string;
 
-  constructor(public navCtrl: NavController, public Storage: NativeStorage, public toastCtrl: ToastController) {
-    this.username = null;
-    this.password = null;
-  }
+	username: string;
+	password: string;
 
-  toRegister() {
-    this.navCtrl.push(RegisterPage);
-  }
+	constructor(public navCtrl: NavController, public storage: NativeStorage, public toastCtrl: ToastController) {
+		this.username = null;
+		this.password = null;
+	}
 
-  showSuccessToast(){
-    let successAlert = this.toastCtrl.create({
-      message: 'You have Logged in!',
-      duration: 1800,
-      position: "top",
-    });
-    successAlert.present();
-  }
-  showFailToast(){
-    let failToast = this.toastCtrl.create({
-      message: 'Invalid username/password',
-      duration: 2200
-    });
-    
-    failToast.present();
-  }
+	toRegister() {
+		this.navCtrl.push(RegisterPage);
+	}
 
-  onLogin() {
-    this.Storage.getItem("user")
-      .then(data => {
-        if (this.username == data.user_username && this.password == data.user_password) {
-          this.showSuccessToast();
-          this.navCtrl.setRoot(TabsPage);
-        } else {
-          this.showFailToast();
-        }
-      })
-      .catch(err =>{
-        this.showFailToast();
-      });
-  }
+	logIn() {
+		this.storage.getItem("users").then(users => {
+			const bool = users.some((user) => {
+				return this.username === user.username && this.password === user.password;
+			});
+			if(bool) {
+				this.logResult({
+					message: 'You have Logged in!',
+					status: 200,
+					duration: 1800,
+					position: "top",
+				});
+			} else {
+				this.logResult({
+					message: 'Invalid username/password',
+					status: 400,
+					duration: 2200
+				});
+			}
+		}).catch(err =>{
+			this.logResult({
+				message: 'Try again later',
+				status: 400,
+				duration: 2000,
+			});
+		});
+	}
+
+	outPut() {
+		this.storage.getItem('users').then((users) => {
+			console.log(JSON.stringify(users))
+		}).catch((err) => {
+			console.log(JSON.stringify(err))
+		})
+	}
+	
+	logResult({ message, status, ...rest }) {
+		this.toastCtrl.create({ 
+			message: message,
+			...rest 
+		}).present();
+		if (status === 200) {
+			this.navCtrl.setRoot(TabsPage);
+		}
+	}
 
 }
