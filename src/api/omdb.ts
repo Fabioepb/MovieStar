@@ -13,9 +13,18 @@ export class OmdbApi {
         public http: HttpClient
     ) {}
     url: string = 'http://www.omdbapi.com/?apikey=4dcf5341&s';
+    characters: string = 'abcdefghijklmnopqrstuvwxyz';
 
-    getRandomMovies():Observable<any> {
-        return this.http.get<any>(`${this.url}&s=as`);
+    generateRandomLetter():string {        
+        return this.characters[Math.floor(Math.random() * (this.characters.length))]
     }
-
+    getRandomMovies():Observable<any> {
+        return this.http.get<any>(`${this.url}&type=movie&s=${this.generateRandomLetter()}${this.generateRandomLetter()}`);
+    }
+    getMovieByTitle(movieTitle:string):Observable<any> {
+        return this.http.get<any>(`${this.url}&type=movie&t=${movieTitle}`);
+    }
+    getMovieById(movieId: string): Observable<any> {
+        return this.http.get<any>(`${this.url}&type=movie&i=${movieId}`);
+    }
 }

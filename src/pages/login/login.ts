@@ -58,8 +58,8 @@ export class LoginPage {
 		// }).catch((err) => {
 		// 	console.log(JSON.stringify(err))
 		// });
-		// this.api.getRandomMovies().subscribe((data) => {
-		// 	console.log(data);
-		// });
+		this.api.getRandomMovies().subscribe((data) => {
+			console.log(data);
+		});
 	}
 }
