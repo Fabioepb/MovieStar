@@ -14,11 +14,13 @@ export class TabsPage {
         public navParams: NavParams
     ) {
         this.user = this.navParams.data;
+        
     };
     user: {
         username:string,
         password:string,
     };
+    userId: string;
     tab1Root = HomePage;
     tab2Root = AboutPage;
     tab3Root = ContactPage;
@@ -26,8 +28,12 @@ export class TabsPage {
     ionViewCanEnter():Promise<void> {
         return new Promise((res,rej) => {
             this.storage.getItem("users").then(users => {
-                const bool = users.some((user) => {
-                    return this.user.username === user.username && this.user.password === user.password;
+                let { username, password } = this.user;
+                const bool = users.some((user,i) => {
+                    if(username === user.username && password === user.password) {
+                        this.userId = i;
+                        return true;
+                    }
                 });
                 bool ? res() : rej();
             }).catch(error => {
@@ -35,4 +41,5 @@ export class TabsPage {
             });
         });
     }
+    
 }
