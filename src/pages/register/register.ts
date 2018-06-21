@@ -7,13 +7,15 @@ import { NativeStorage } from '@ionic-native/native-storage';
 	templateUrl: 'register.html'
 })
 export class RegisterPage {
-	
-	username:string;
-	password:string;
-	email:string;
-	date:any;
-
-	constructor (public navCtrl: NavController, public storage: NativeStorage, public toastCtrl: ToastController) {}
+	constructor (
+		public navCtrl: NavController, 
+		public storage: NativeStorage, 
+		public toastCtrl: ToastController
+	) {}
+	username: string;
+	password: string;
+	email: string;
+	date: any;
 
 	signUp() {
 		let newUser = {
