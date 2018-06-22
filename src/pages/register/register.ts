@@ -17,6 +17,31 @@ export class RegisterPage {
 	email: string;
 	date: any;
 
+	// signup() {
+	// 	let newUser = {
+	// 		username: this.username,
+	// 		password: this.password,
+	// 		email: this.email,
+	// 		date: this.date,
+	// 	}
+	// 	this.storage.getItem(newUser.username).then((user) => {
+	// 		this.signResult({
+	// 			message: 'Username already in used',
+	// 			duration: 2000,
+	// 			status: 200,
+	// 		});
+	// 	}).catch((error) => {
+	// 		this.storage.setItem(newUser.username, newUser).then(() => {
+	// 			this.signResult({
+	// 				message: 'Account created succesfully!',
+	// 				duration: 2000,
+	// 				status: 200,
+	// 			});
+	// 			this.navCtrl.pop();
+	// 		});
+	// 	});
+	// }
+
 	signUp() {
 		let newUser = {
 			username: this.username,

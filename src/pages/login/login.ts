@@ -18,7 +18,7 @@ export class LoginPage {
 	) {}
 	username: string;
 	password: string;
-
+	
 	logIn() {
 		this.navCtrl.setRoot(TabsPage,{
 			username: this.username,

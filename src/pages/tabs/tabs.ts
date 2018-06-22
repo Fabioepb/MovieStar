@@ -37,5 +37,17 @@ export class TabsPage {
             });
         });
     }
+
+    // x():Promise<void> {
+    //     const { username, password } = this.user;
+        
+    //     return new Promise((res,rej) => {
+    //         this.storage.getItem(username).then((user) => {
+    //             (user.password == password) ? res() : rej();
+    //         }).catch((error) => {
+    //             rej();
+    //         });
+    //     });
+    // }
     
 }
