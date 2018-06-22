@@ -59,7 +59,7 @@ export class LoginPage {
 		// 	console.log(JSON.stringify(err))
 		// });
 		this.api.getRandomMovies().subscribe((data) => {
-			console.log(data);
+			console.log(JSON.stringify(data));
 		});
 	}
 }

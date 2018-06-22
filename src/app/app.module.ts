@@ -11,7 +11,7 @@ import { OmdbApi } from '../api/omdb';
 // Declarations, entryComponents
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { SavedPage } from '../pages/saved/saved';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -21,7 +21,7 @@ import { RegisterPage } from '../pages/register/register';
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    SavedPage,
     HomePage,
     TabsPage,
     LoginPage,
@@ -36,7 +36,7 @@ import { RegisterPage } from '../pages/register/register';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    SavedPage,
     HomePage,
     TabsPage,
     LoginPage,

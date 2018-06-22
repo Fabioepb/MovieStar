@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { SavedPage } from '../saved/saved';
 import { HomePage } from '../home/home';
 import { NavParams } from 'ionic-angular';
 import { NativeStorage } from '@ionic-native/native-storage';
@@ -20,20 +20,16 @@ export class TabsPage {
         username:string,
         password:string,
     };
-    userId: string;
     tab1Root = HomePage;
     tab2Root = AboutPage;
-    tab3Root = ContactPage;
+    tab3Root = SavedPage;
 
     ionViewCanEnter():Promise<void> {
         return new Promise((res,rej) => {
             this.storage.getItem("users").then(users => {
                 let { username, password } = this.user;
-                const bool = users.some((user,i) => {
-                    if(username === user.username && password === user.password) {
-                        this.userId = i;
-                        return true;
-                    }
+                const bool = users.some((user) => {
+                    return (username === user.username && password === user.password)
                 });
                 bool ? res() : rej();
             }).catch(error => {
