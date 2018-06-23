@@ -25,26 +25,29 @@ export class TabsPage {
     tab3Root = SavedPage;
 
     ionViewCanEnter():Promise<void> {
-        return new Promise((res,rej) => {
-            this.storage.getItem("users").then(users => {
-                let { username, password } = this.user;
-                const bool = users.some((user) => {
-                    return (username === user.username && password === user.password)
-                });
-                bool ? res() : rej();
-            }).catch(error => {
+        const { username, password } = this.user;
+
+        return new Promise((res, rej) => {
+            this.storage.getItem(username).then((user) => {
+                console.log(JSON.stringify(user));
+                (user.password == password) ? res() : rej();
+            }).catch((error) => {
                 rej();
             });
         });
     }
 
     // x():Promise<void> {
-    //     const { username, password } = this.user;
-        
-    //     return new Promise((res,rej) => {
-    //         this.storage.getItem(username).then((user) => {
-    //             (user.password == password) ? res() : rej();
-    //         }).catch((error) => {
+
+    //     return new Promise((res, rej) => {
+    //         this.storage.getItem("users").then(users => {
+    //             let { username, password } = this.user;
+    //             const bool = users.some((user) => {
+    //                 console.log(JSON.stringify(user))
+    //                 return (username === user.username && password === user.password)
+    //             });
+    //             bool ? res() : rej();
+    //         }).catch(error => {
     //             rej();
     //         });
     //     });

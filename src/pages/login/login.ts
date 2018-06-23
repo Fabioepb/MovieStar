@@ -25,14 +25,15 @@ export class LoginPage {
 			password: this.password,
 		})
 		.then((exist) => {
+			console.log(exist)
 			if(exist) {
-				this.logResult({
+				this.toastAlert({
 					message: 'You have Logged in!',
 					duration: 1800,
 					position: "top",
 				});
 			} else {
-				this.logResult({
+				this.toastAlert({
 					message: 'Invalid username/password',
 					duration: 2200
 				});
@@ -40,7 +41,7 @@ export class LoginPage {
 		});
 	}
 
-	logResult({ message, ...rest }) {
+	toastAlert({ message, ...rest }) {
 		this.toastCtrl.create({ 
 			message: message,
 			...rest 

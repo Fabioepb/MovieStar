@@ -17,31 +17,6 @@ export class RegisterPage {
 	email: string;
 	date: any;
 
-	// signup() {
-	// 	let newUser = {
-	// 		username: this.username,
-	// 		password: this.password,
-	// 		email: this.email,
-	// 		date: this.date,
-	// 	}
-	// 	this.storage.getItem(newUser.username).then((user) => {
-	// 		this.signResult({
-	// 			message: 'Username already in used',
-	// 			duration: 2000,
-	// 			status: 200,
-	// 		});
-	// 	}).catch((error) => {
-	// 		this.storage.setItem(newUser.username, newUser).then(() => {
-	// 			this.signResult({
-	// 				message: 'Account created succesfully!',
-	// 				duration: 2000,
-	// 				status: 200,
-	// 			});
-	// 			this.navCtrl.pop();
-	// 		});
-	// 	});
-	// }
-
 	signUp() {
 		let newUser = {
 			username: this.username,
@@ -49,35 +24,58 @@ export class RegisterPage {
 			email: this.email,
 			date: this.date,
 		}
-		try {
-			this.storage.getItem('users').then((users) => {
-				// Verificar datos repetidos
-				this.storage.setItem('users', [newUser, ...users]);
-			}).catch((error) => {
-				this.storage.setItem('users', [newUser]);
-			});
-			this.signResult({
-				message: 'Account created succesfully!',
+		this.storage.getItem(newUser.username).then((user) => {
+			this.toastAlert({
+				message: 'Username already in used',
 				duration: 2000,
 				status: 200,
 			});
-		} catch(error) {
-			console.log(JSON.stringify(error));
-			this.signResult({
-				message: 'Problem with my amazing api, try again later',
-				duration: 2000,
-				status: 400,
+		}).catch((error) => {
+			this.storage.setItem(newUser.username, newUser).then(() => {
+				this.toastAlert({
+					message: 'Account created succesfully!',
+					duration: 2000,
+					status: 200,
+				});
+				this.navCtrl.pop();
 			});
-		}
+		});
 	}
 
-	signResult({ message, status, ...rest }) {
+	// signUp() {
+	// 	let newUser = {
+	// 		username: this.username,
+	// 		password: this.password,
+	// 		email: this.email,
+	// 		date: this.date,
+	// 	}
+	// 	try {
+	// 		this.storage.getItem('users').then((users) => {
+	// 			// Verificar datos repetidos
+	// 			this.storage.setItem('users', [newUser, ...users]);
+	// 		}).catch((error) => {
+	// 			this.storage.setItem('users', [newUser]);
+	// 		});
+	// 		this.toastAlert({
+	// 			message: 'Account created succesfully!',
+	// 			duration: 2000,
+	// 			status: 200,
+	// 		});
+	// 	} catch(error) {
+	// 		console.log(JSON.stringify(error));
+	// 		this.toastAlert({
+	// 			message: 'Problem with my amazing api, try again later',
+	// 			duration: 2000,
+	// 			status: 400,
+	// 		});
+	// 	}
+	// }
+
+	toastAlert({ message, status, ...rest }) {
 		this.toastCtrl.create({ 
 			message: message, 
 			...rest
 		}).present();
-		if(status === 200) 
-			this.navCtrl.pop();
 	}
 
 }
