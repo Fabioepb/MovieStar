@@ -29,7 +29,6 @@ export class TabsPage {
 
         return new Promise((res, rej) => {
             this.storage.getItem(username).then((user) => {
-                console.log(JSON.stringify(user));
                 (user.password == password) ? res() : rej();
             }).catch((error) => {
                 rej();

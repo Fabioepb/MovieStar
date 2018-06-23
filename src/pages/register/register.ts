@@ -23,6 +23,7 @@ export class RegisterPage {
 			password: this.password,
 			email: this.email,
 			date: this.date,
+			latestMovies: [],
 		}
 		this.storage.getItem(newUser.username).then((user) => {
 			this.toastAlert({

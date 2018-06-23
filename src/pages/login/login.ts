@@ -16,8 +16,8 @@ export class LoginPage {
 		public toastCtrl: ToastController,
 		private api: OmdbApi
 	) {}
-	username: string;
-	password: string;
+	username: string = 'Jnlbr';
+	password: string = '1234';
 	
 	logIn() {
 		this.navCtrl.setRoot(TabsPage,{
@@ -25,7 +25,6 @@ export class LoginPage {
 			password: this.password,
 		})
 		.then((exist) => {
-			console.log(exist)
 			if(exist) {
 				this.toastAlert({
 					message: 'You have Logged in!',
@@ -59,8 +58,6 @@ export class LoginPage {
 		// }).catch((err) => {
 		// 	console.log(JSON.stringify(err))
 		// });
-		this.api.getRandomMovies().subscribe((data) => {
-			console.log(JSON.stringify(data));
-		});
+		this.storage.clear();
 	}
 }
