@@ -4,36 +4,35 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding margin-top>
-  <ion-card>
-    <ion-grid>
+<ion-content>
+    <ion-grid margin-top>
       <ion-row>
-        <ion-col margin-right>
-          <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text" [(ngModel)]="username"></ion-input>
+        <ion-col col-10 offset-1>
+          <ion-item class="item-custom">
+            <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col margin-right>
-          <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password" [(ngModel)]="password"></ion-input>
+        <ion-col col-10 offset-1>
+          <ion-item class="item-custom">
+            <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col margin-right>
-          <ion-item>
-            <ion-label floating>Email</ion-label>
-            <ion-input type="email" [(ngModel)]="email"></ion-input>
+        <ion-col col-10 offset-1>
+          <ion-item class="item-custom">
+            <ion-input type="email" [(ngModel)]="email" placeholder="Email"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>
-          <ion-item margin-top>
+        <ion-col col-10 offset-1>
+          <ion-item class="item-custom">
             <ion-label>Birthday</ion-label>
             <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="date"></ion-datetime>
           </ion-item>
@@ -41,10 +40,10 @@
       </ion-row>
 
       <ion-row padding-vertical>
-        <ion-col>
-          <button ion-button outline block (click)="signUp();">REGISTER NOW</button>
+        <ion-col col-10 offset-1>
+          <button ion-button block (click)="signUp();">REGISTER NOW</button>
         </ion-col>
       </ion-row>
+
     </ion-grid>
-  </ion-card>
 </ion-content>

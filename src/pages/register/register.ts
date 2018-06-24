@@ -33,6 +33,7 @@ export class RegisterPage {
 				message: 'Username already in used',
 				duration: 2000,
 				status: 200,
+				position: "top",
 			});
 		}).catch((error) => {
 			this.storage.setItem(newUser.username, newUser).then(() => {
@@ -40,6 +41,7 @@ export class RegisterPage {
 					message: 'Account created succesfully!',
 					duration: 2000,
 					status: 200,
+					position: "top",
 				});
 				this.navCtrl.pop();
 			});

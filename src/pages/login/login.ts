@@ -34,7 +34,8 @@ export class LoginPage {
 			} else {
 				this.toastAlert({
 					message: 'Invalid username/password',
-					duration: 2200
+					duration: 2200,
+					position: "top",
 				});
 			}
 		});

@@ -4,29 +4,36 @@
     <div id="star"></div>
   </div>  
 
-  <ion-list>
-    <ion-item class="item-username">
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text" [(ngModel)]="username"></ion-input>
-    </ion-item>
-    <ion-item class="item-password">
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="password"></ion-input>
-    </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row margin-top padding-top>
+      <ion-col col-10 offset-1>
+          <ion-item class="item-username">
+              <ion-input type="text" [(ngModel)]="username" placeholder="Username"></ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
 
-  <div class="options">
-    <div class="option-login">
-      <button ion-button class="button-login" block (click)="logIn()">
-      LOGIN
-      </button>
-    </div>
-    <div text-center class="option-signup" (click)="toRegister()">
-      SIGN UP
-    </div>
-    <button ion-button class="button-login" block (click)="outPut()">
-      LOGIN
-      </button>
-  </div>
+    <ion-row>
+      <ion-col col-10 offset-1>
+          <ion-item class="item-password" padding-right>
+              <ion-input type="password" [(ngModel)]="password" placeholder="Password"></ion-input>
+            </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin-top>
+        <ion-col col-10 offset-1>
+          <button ion-button class="button-login" block (click)="logIn()">
+          LOGIN
+          </button>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col text-center class="option-signup" (click)="toRegister()">
+            Don't have an account? Register Here
+        </ion-col>
+    </ion-row>
+  </ion-grid>
   
 </ion-content>
