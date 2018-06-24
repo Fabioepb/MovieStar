@@ -76,7 +76,6 @@ export class HomePage {
                 this.api.getMovieById(id)
                 .subscribe(movie => {
                     this.movies.push(movie);
-                    console.log(JSON.stringify(movie));
                 });
             });
         } else {

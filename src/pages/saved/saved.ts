@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserStorage } from '../../helpers/userStorage';
+import { OmdbApi } from '../../api/omdb';
 
 @Component({
   selector: 'page-saved',
@@ -14,24 +15,28 @@ export class SavedPage {
     }
     saved = [];
     favorites = [];
+    savedmovies = [];
+    starredmovies = [];
     option: string = "saved";
 
     constructor( 
 		public navCtrl: NavController,
 		public stg: UserStorage,
-		public params: NavParams
+        public params: NavParams,
+        public api: OmdbApi
     ) {
     	this.user = params.data;
     }
 
     ionViewDidEnter() {
         try{
+            this.savedmovies = [];
+            this.starredmovies = [];
             this.stg.getField({
                 username: this.user.username,
                 key: 'saved'
             }).then(saved => {
-                console.log(saved)
-                this.saved = saved;
+                this.fetchMovies(saved, this.savedmovies);
             }).catch(err => {
                 console.log(JSON.stringify(err));
             });
@@ -40,8 +45,7 @@ export class SavedPage {
                 username: this.user.username,
                 key: 'favorites'
             }).then(favorites => {
-                console.log(favorites)
-                this.favorites = favorites;
+                this.fetchMovies(favorites, this.starredmovies);
             }).catch(err => {
                 console.log(JSON.stringify(err));
             });
@@ -50,5 +54,17 @@ export class SavedPage {
         }
     }
 
+    fetchMovies( ids:any[], moviestr:any[]) {
+        if(ids.length > 0) {
+            ids.forEach(id => {
+                this.api.getMovieById(id)
+                .subscribe(movie => {
+                    moviestr.push(movie);
+                });
+            });
+        } else {
+            console.log('NO HAY IDS')
+        }
+    }
 
 }

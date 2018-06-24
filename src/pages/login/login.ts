@@ -16,8 +16,8 @@ export class LoginPage {
 		public toastCtrl: ToastController,
 		private api: OmdbApi
 	) {}
-	username: string = 'Jnlbr';
-	password: string = '1234';
+	username: string = 'fabio';
+	password: string = '123';
 	
 	logIn() {
 		this.navCtrl.setRoot(TabsPage,{

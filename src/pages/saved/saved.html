@@ -20,13 +20,13 @@
 <ion-content>
     <div [ngSwitch]="option">
         <ion-list *ngSwitchCase="'saved'">
-          <ion-item *ngFor="let s of saved">
-            {{s}}
+          <ion-item *ngFor="let s of savedmovies">
+            {{s.Title}}
           </ion-item>
         </ion-list>
         <ion-list *ngSwitchCase="'starred'">
-          <ion-item *ngFor="let f of favorites">
-            {{f}}
+          <ion-item *ngFor="let f of starredmovies">
+            {{f.Title}}
           </ion-item>
         </ion-list>
     </div>
