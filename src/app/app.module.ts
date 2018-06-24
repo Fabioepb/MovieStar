@@ -11,7 +11,6 @@ import { OmdbApi } from '../api/omdb';
 import { UserStorage } from '../helpers/userStorage';
 // Declarations, entryComponents
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
 import { SavedPage } from '../pages/saved/saved';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -21,7 +20,6 @@ import { RegisterPage } from '../pages/register/register';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     SavedPage,
     HomePage,
     TabsPage,
@@ -36,7 +34,6 @@ import { RegisterPage } from '../pages/register/register';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     SavedPage,
     HomePage,
     TabsPage,

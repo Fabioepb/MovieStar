@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AboutPage } from '../about/about';
 import { SavedPage } from '../saved/saved';
 import { HomePage } from '../home/home';
 import { NavParams } from 'ionic-angular';
@@ -21,12 +20,10 @@ export class TabsPage {
         password:string,
     };
     tab1Root = HomePage;
-    tab2Root = AboutPage;
-    tab3Root = SavedPage;
+    tab2Root = SavedPage;
 
     ionViewCanEnter():Promise<void> {
         const { username, password } = this.user;
-
         return new Promise((res, rej) => {
             this.storage.getItem(username).then((user) => {
                 (user.password == password) ? res() : rej();
