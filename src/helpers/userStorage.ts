@@ -16,7 +16,7 @@ export class UserStorage {
         }
     }
     
-    async getValue({ username, key }): Promise<any> {
+    async getField({ username, key }): Promise<any> {
         try {
             let user = await this.stg.getItem(username);
             return user[key];
@@ -33,10 +33,28 @@ export class UserStorage {
         }
     }
 
-    async setValue({username, values}):Promise<void> {
+    async setField({username, values}):Promise<void> {
         try {
             let user = await this.stg.getItem(username);
             return await this.stg.setItem(username, { ...user, ...values });
+        } catch(err) {
+            throw err;
+        }
+    }
+
+    async addValue({ username, key, value }): Promise<void> {
+        try {
+            let user = await this.stg.getItem(username);
+            let field = user[key];
+            if(Array.isArray(field)) {
+                this.setField({
+                    username,
+                    values: {
+                        [key]: [value, ...field]
+                    },
+                });
+            }
+            return
         } catch(err) {
             throw err;
         }

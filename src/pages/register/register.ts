@@ -18,12 +18,15 @@ export class RegisterPage {
 	date: any;
 
 	signUp() {
+		this.storage.clear();
 		let newUser = {
 			username: this.username,
 			password: this.password,
 			email: this.email,
 			date: this.date,
 			latestMovies: [],
+			favorites: [],
+			saved: [],
 		}
 		this.storage.getItem(newUser.username).then((user) => {
 			this.toastAlert({
@@ -42,35 +45,6 @@ export class RegisterPage {
 			});
 		});
 	}
-
-	// signUp() {
-	// 	let newUser = {
-	// 		username: this.username,
-	// 		password: this.password,
-	// 		email: this.email,
-	// 		date: this.date,
-	// 	}
-	// 	try {
-	// 		this.storage.getItem('users').then((users) => {
-	// 			// Verificar datos repetidos
-	// 			this.storage.setItem('users', [newUser, ...users]);
-	// 		}).catch((error) => {
-	// 			this.storage.setItem('users', [newUser]);
-	// 		});
-	// 		this.toastAlert({
-	// 			message: 'Account created succesfully!',
-	// 			duration: 2000,
-	// 			status: 200,
-	// 		});
-	// 	} catch(error) {
-	// 		console.log(JSON.stringify(error));
-	// 		this.toastAlert({
-	// 			message: 'Problem with my amazing api, try again later',
-	// 			duration: 2000,
-	// 			status: 400,
-	// 		});
-	// 	}
-	// }
 
 	toastAlert({ message, status, ...rest }) {
 		this.toastCtrl.create({ 

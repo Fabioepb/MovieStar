@@ -30,7 +30,7 @@ export class HomePage {
         this.search = '';
     }
     ionViewDidLoad() {
-        this.userStg.getValue({
+        this.userStg.getField({
             username: this.user.username,
             key: 'latestMovies'
         }).then(latestMovies => {
@@ -41,7 +41,7 @@ export class HomePage {
         });
     }
     ionViewWillLeave() {
-        this.userStg.setValue({
+        this.userStg.setField({
             username: this.user.username,
             values: {
                 latestMovies: this.latestMovies
@@ -54,10 +54,9 @@ export class HomePage {
     }
     onSearch() {
         this.movies = [];
-
-        this.api.getMovies(this.search).subscribe((data) => {            
+        this.api.getMovies(this.search)
+        .subscribe((data) => {
             data.Search.forEach((m) => {
-
                 if(this.latestMovies.length < 30) {
                     this.latestMovies.push(m.imdbID);
                     this.movies.push(m);
@@ -69,7 +68,6 @@ export class HomePage {
             });
         });
     }
-
     fetchLatestMovies() {
         if(this.latestMovies.length > 0) {
             this.latestMovies.forEach(id => {
@@ -81,5 +79,18 @@ export class HomePage {
         } else {
             console.log('NO HAY IDS')
         }
+    }
+    addTo(key:string, movieId:string) {
+        console.log(key)
+        console.log(movieId);
+        this.userStg.addValue({
+            username: this.user.username,
+            key: key,
+            value: movieId,
+        }).then(() => {
+            // Success
+        }).catch(err => {
+            // Failure
+        });
     }
 }

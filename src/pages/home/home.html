@@ -9,6 +9,8 @@
   <ion-list>
     <ion-item *ngFor="let movie of movies">
       {{movie.Title}}
+      <button ion-button (click)="addTo('favorites', movie.imdbID)"> addto fav </button>
+      <button ion-button (click)="addTo('saved', movie.imdbID)"> addto sav </button>
     </ion-item>
   </ion-list>
 </ion-content>
