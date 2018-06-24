@@ -8,6 +8,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { OmdbApi } from '../api/omdb';
+import { UserStorage } from '../helpers/userStorage';
 // Declarations, entryComponents
 import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
@@ -47,6 +48,7 @@ import { RegisterPage } from '../pages/register/register';
     SplashScreen,
     NativeStorage,
     OmdbApi,
+    UserStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
