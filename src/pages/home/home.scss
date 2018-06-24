@@ -1,3 +1,16 @@
 page-home {
+     ion-content {
+        background-color: lightgray;
+        background: linear-gradient(
+            to bottom,
+            rgb(211, 209, 209) 5%,
+            #313131 95%
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
 
+    ion-list{
+        background: #0000 !important;
+    }
 }

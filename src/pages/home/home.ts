@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { OmdbApi } from '../../api/omdb';
 import { UserStorage } from '../../helpers/userStorage';
+import { ToastController} from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -20,6 +21,7 @@ export class HomePage {
     constructor( 
         public navCtrl: NavController, 
         public params: NavParams,
+        public toastCtrl: ToastController,
         private api: OmdbApi,
         private userStg: UserStorage
     ) {
@@ -74,6 +76,7 @@ export class HomePage {
                 this.api.getMovieById(id)
                 .subscribe(movie => {
                     this.movies.push(movie);
+                    console.log(JSON.stringify(movie));
                 });
             });
         } else {
@@ -88,9 +91,33 @@ export class HomePage {
             key: key,
             value: movieId,
         }).then(() => {
-            // Success
+            if(key == "favorites"){
+                this.toastAlert({
+                    message: 'You have Starred a movie!',
+                    duration: 1500,
+                    position: "top",
+                });
+            }else{
+                this.toastAlert({
+                    message: 'You have Saved a movie!',
+                    duration: 1500,
+                    position: "top",
+                });
+            }
         }).catch(err => {
-            // Failure
+            this.toastAlert({
+                message: 'Error',
+                duration: 1500,
+                position: "top",
+            });
         });
     }
+
+    toastAlert({ message, ...rest }) {
+		this.toastCtrl.create({ 
+			message: message,
+			...rest 
+		}).present();
+    }
+    
 }

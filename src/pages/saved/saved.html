@@ -1,13 +1,33 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-border-bottom>
     <ion-title>
-      Saved
+      Menu
     </ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="option">
+        <ion-segment-button value="saved">
+          Saved
+        </ion-segment-button>
+        <ion-segment-button value="starred">
+          Starred
+        </ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let s of saved">
-    {{s}}
-  </ion-item>
+    <div [ngSwitch]="option">
+        <ion-list *ngSwitchCase="'saved'">
+          <ion-item *ngFor="let s of saved">
+            {{s}}
+          </ion-item>
+        </ion-list>
+        <ion-list *ngSwitchCase="'starred'">
+          <ion-item *ngFor="let f of favorites">
+            {{f}}
+          </ion-item>
+        </ion-list>
+    </div>
 </ion-content>

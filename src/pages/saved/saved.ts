@@ -13,6 +13,8 @@ export class SavedPage {
         password:string,
     }
     saved = [];
+    favorites = [];
+    option: string = "saved";
 
     constructor( 
 		public navCtrl: NavController,
@@ -23,15 +25,29 @@ export class SavedPage {
     }
 
     ionViewDidEnter() {
-		this.stg.getField({
-            username: this.user.username,
-            key: 'saved'
-        }).then(saved => {
-            console.log(saved)
-		    this.saved = saved;
-		}).catch(err => {
-		    console.log(JSON.stringify(err));
-		});
+        try{
+            this.stg.getField({
+                username: this.user.username,
+                key: 'saved'
+            }).then(saved => {
+                console.log(saved)
+                this.saved = saved;
+            }).catch(err => {
+                console.log(JSON.stringify(err));
+            });
+
+            this.stg.getField({
+                username: this.user.username,
+                key: 'favorites'
+            }).then(favorites => {
+                console.log(favorites)
+                this.favorites = favorites;
+            }).catch(err => {
+                console.log(JSON.stringify(err));
+            });
+        }catch(err){
+            throw err;
+        }
     }
 
 

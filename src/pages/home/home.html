@@ -1,16 +1,39 @@
 <ion-content padding>
-  <ion-searchbar
-    [(ngModel)]="search"
-    [showCancelButton]="shouldShowCancel"
-    (keyup.enter)="onSearch()"
-    (ionCancel)="onCancel($event)"
-  >
-  </ion-searchbar>
-  <ion-list>
+  <ion-searchbar [(ngModel)]="search" [showCancelButton]="shouldShowCancel" (keyup.enter)="onSearch()" (ionCancel)="onCancel($event)"></ion-searchbar>
+
+  <ion-list no-lines>
     <ion-item *ngFor="let movie of movies">
-      {{movie.Title}}
-      <button ion-button (click)="addTo('favorites', movie.imdbID)"> addto fav </button>
-      <button ion-button (click)="addTo('saved', movie.imdbID)"> addto sav </button>
+
+      <ion-card>
+        <ion-card-content>
+          <ion-card-title>
+            {{movie.Title}}
+          </ion-card-title>
+          <h4>Released: {{movie.Released}}</h4>
+          <h4>Genre: {{movie.Genre}}</h4>
+          <h5>ImDB: {{movie.imdbRating}}</h5>
+          <p text-wrap>{{movie.Plot}}</p>
+        </ion-card-content>
+
+        <ion-row no-padding>
+
+          <ion-col col-3 offset-6>
+            <button ion-button clear small icon-start (click)="addTo('favorites', movie.imdbID)">
+              <ion-icon name='star' color="star"></ion-icon>
+              Favorite
+            </button>
+          </ion-col>
+
+          <ion-col col-3>
+            <button ion-button clear small  icon-start (click)="addTo('saved', movie.imdbID)">
+              <ion-icon name='clock' color="secondary"></ion-icon>
+              Save
+            </button>
+          </ion-col>
+
+        </ion-row>
+
+      </ion-card>
     </ion-item>
   </ion-list>
 </ion-content>
