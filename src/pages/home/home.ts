@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { OmdbApi } from '../../api/omdb';
 import { UserStorage } from '../../helpers/userStorage';
 import { ToastController} from 'ionic-angular';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-home',
@@ -125,6 +126,10 @@ export class HomePage {
 			message: message,
 			...rest 
 		}).present();
+    }
+
+    toDetails(id:any){
+        this.navCtrl.push(DetailsPage,id);
     }
     
 }

@@ -16,7 +16,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { PopoverPage } from '../pages/popover/popover'
+import { PopoverPage } from '../pages/popover/popover';
+import { DetailsPage } from '../pages/details/details';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PopoverPage } from '../pages/popover/popover'
     TabsPage,
     LoginPage,
     RegisterPage,
-    PopoverPage
+    PopoverPage,
+    DetailsPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { PopoverPage } from '../pages/popover/popover'
     TabsPage,
     LoginPage,
     RegisterPage,
-    PopoverPage
+    PopoverPage,
+    DetailsPage
   ],
   providers: [
     StatusBar,
