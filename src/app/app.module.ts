@@ -16,6 +16,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { PopoverPage } from '../pages/popover/popover'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { RegisterPage } from '../pages/register/register';
     HomePage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,

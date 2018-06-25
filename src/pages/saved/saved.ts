@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserStorage } from '../../helpers/userStorage';
 import { OmdbApi } from '../../api/omdb';
+import { PopoverController } from 'ionic-angular';
+import { PopoverPage } from '../popover/popover'
 
 @Component({
   selector: 'page-saved',
@@ -23,7 +25,8 @@ export class SavedPage {
 		public navCtrl: NavController,
 		public stg: UserStorage,
         public params: NavParams,
-        public api: OmdbApi
+        public api: OmdbApi,
+        public popCtrl: PopoverController
     ) {
     	this.user = params.data;
     }
@@ -65,6 +68,12 @@ export class SavedPage {
         } else {
             console.log('NO HAY IDS')
         }
+    }
+
+    presentPopover(ev){
+        this.popCtrl.create(PopoverPage).present({
+            ev: ev
+          });
     }
 
 }

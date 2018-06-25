@@ -58,16 +58,24 @@ export class HomePage {
         this.movies = [];
         this.api.getMovies(this.search)
         .subscribe((data) => {
-            data.Search.forEach((m) => {
-                if(this.latestMovies.length < 30) {
-                    this.latestMovies.push(m.imdbID);
-                    this.movies.push(m);
-                } else {
-                    this.latestMovies.shift();
-                    this.latestMovies.push(m.imdbID);
-                    this.movies.push(m);
-                }                
-            });
+            if(data.Search){
+                data.Search.forEach((m) => {
+                    if(this.latestMovies.length < 30) {
+                        this.latestMovies.push(m.imdbID);
+                        this.movies.push(m);
+                    } else {
+                        this.latestMovies.shift();
+                        this.latestMovies.push(m.imdbID);
+                        this.movies.push(m);
+                    }                
+                });
+            }else{
+                this.toastAlert({
+                    message: 'No Results!',
+                    duration: 1500,
+                    position: "bottom",
+                });
+            }
         });
     }
     fetchLatestMovies() {

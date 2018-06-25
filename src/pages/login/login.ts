@@ -3,7 +3,6 @@ import { NavController,ToastController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { TabsPage } from '../tabs/tabs';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { OmdbApi } from '../../api/omdb';
 
 @Component({
   selector: 'page-login',
@@ -14,7 +13,6 @@ export class LoginPage {
 		public navCtrl: NavController, 
 		public storage: NativeStorage, 
 		public toastCtrl: ToastController,
-		private api: OmdbApi
 	) {}
 	username: string = 'fabio';
 	password: string = '123';

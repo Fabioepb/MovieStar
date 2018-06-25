@@ -3,6 +3,11 @@
     <ion-title>
       Menu
     </ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="presentPopover($event)">
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar no-border-top>
@@ -19,15 +24,18 @@
 
 <ion-content>
     <div [ngSwitch]="option">
+
         <ion-list *ngSwitchCase="'saved'">
           <ion-item *ngFor="let s of savedmovies">
             {{s.Title}}
           </ion-item>
         </ion-list>
+
         <ion-list *ngSwitchCase="'starred'">
           <ion-item *ngFor="let f of starredmovies">
             {{f.Title}}
           </ion-item>
         </ion-list>
+
     </div>
 </ion-content>
