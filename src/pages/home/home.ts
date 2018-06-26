@@ -91,6 +91,7 @@ export class HomePage {
             console.log('NO HAY IDS')
         }
     }
+
     addTo(key:string, movieId:string) {
         console.log(key)
         console.log(movieId);
