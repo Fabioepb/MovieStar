@@ -10,17 +10,18 @@ page-register {
         background-size: 100% 100%;
     }
 
+    .item-input {
+        font-size: 18px;
+        background: #e6e6e6;
+        border-radius: 3px;
+        border: 1px solid rgb(105, 105, 105);
+    }
+
     ion-input {
-        font-weight: 500;
+        font-weight: 400;
         color: rgb(0, 0, 0);
         border-bottom-color: white;
         box-shadow: none;
-    }
-    .item-custom {
-        font-size: 20px !important;
-        background: #e6e6e6;
-        border-radius: 10px;
-        border-color: rgb(48, 48, 48);
     }
 
     .item-md.item-block .item-inner,

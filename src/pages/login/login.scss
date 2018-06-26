@@ -12,31 +12,20 @@ page-login {
     }
     .content {
         background-color: lightgray;
-        background: linear-gradient(
-            to bottom,
-            rgb(211, 209, 209) 5%,
-            #313131 95%
-        );
+        background: linear-gradient(to bottom, rgb(177, 177, 177), rgb(34, 34, 34));
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background-size: 100%;
     }
-    .item-username {
-        font-size: 20px;
+    .item-input {
+        font-size: 18px;
         background: #e6e6e6;
-        border-radius: 5px;
-        border: 1px solid rgb(48, 48, 48);
+        border-radius: 3px;
+        border: 1px solid rgb(105, 105, 105);
     }
-    .item-password {
-        font-size: 20px;
-        background: #e6e6e6;
-        border-radius: 5px;
-        border: 1px solid rgb(48, 48, 48);
-    }
+
     ion-input {
-        font-weight: 500;
-        color: rgb(0, 0, 0);
-        border-bottom-color: white;
-        box-shadow: none;
+        font-weight: 400;
+        color: rgb(49, 49, 49);
     }
     .button-login {
         font-size: 17px;

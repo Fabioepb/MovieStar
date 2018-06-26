@@ -5,7 +5,18 @@
 </ion-header>
 
 <ion-content>
-    <img src= '{{ movieData.Poster }}' height="250" margin-vertical/>
-    <h3>{{ movieData.Title }}</h3>
-    <h3>{{ movieData.Plot }}</h3>
+    <ion-row >
+      <ion-col class="Poster">
+        <img src= '{{ movieData.Poster }}' height="250" width="250" margin-vertical/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="Title" margin-left>
+      <h4 col>{{ movieData.Title }} ({{ movieData.Year}})</h4>
+    </ion-row>
+    <h6>Genre: {{ movieData.Genre }}</h6>
+    <h6>Actors: {{ movieData.Actors }}</h6>
+    <h6>Imdb Rating: {{ movieData.imdbRating }}</h6>
+    <h6>Movie Plot:</h6>
+    <p margin-horizontal>{{movieData.Plot}}</p>
 </ion-content>
