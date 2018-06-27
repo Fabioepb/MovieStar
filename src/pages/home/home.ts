@@ -81,11 +81,19 @@ export class HomePage {
     }
     fetchLatestMovies() {
         if(this.latestMovies.length > 0) {
-            this.latestMovies.forEach(id => {
-                this.api.getMovieById(id)
-                .subscribe(movie => {
-                    this.movies.push(movie);
-                });
+            this.latestMovies.some((id,index) => {
+                if(index < 5){
+                    this.api.getMovieById(id)
+                    .subscribe(movie => {
+                            this.movies.push(movie);
+                    });
+                    console.log(this.latestMovies.length)
+                    this.latestMovies.shift();
+                    console.log("pop!");
+                    console.log(this.latestMovies.length);
+                }else{
+                    return true;
+                }
             });
         } else {
             console.log('NO HAY IDS')
@@ -131,6 +139,20 @@ export class HomePage {
 
     toDetails(id:any){
         this.navCtrl.push(DetailsPage,id);
+    }
+    doInf(infiniteScroll){
+        console.log("infite activated")
+        if(this.latestMovies.length > 0){
+            setTimeout(() => {
+                this.fetchLatestMovies();  
+                infiniteScroll.complete();          
+            },4000);
+        }else{
+            setTimeout(()=>{
+                console.log("Ran out of latest movies");
+                infiniteScroll.complete();  
+            },1000);
+        }
     }
     
 }
