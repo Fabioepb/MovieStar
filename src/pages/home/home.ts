@@ -17,6 +17,7 @@ export class HomePage {
         password: string;
     };
     latestMovies = [];
+    memory =[];
     movies = [];
 
     constructor( 
@@ -38,16 +39,18 @@ export class HomePage {
             key: 'latestMovies'
         }).then(latestMovies => {
             this.latestMovies = latestMovies;
+            this.memory = latestMovies;
             this.fetchLatestMovies();
         }).catch(err => {
             console.log(JSON.stringify(err));
         });
     }
     ionViewWillLeave() {
+        console.log(this.memory);
         this.userStg.setField({
             username: this.user.username,
             values: {
-                latestMovies: this.latestMovies
+                latestMovies: this.memory
             }
         }).then(() => {
             // Success
@@ -61,12 +64,12 @@ export class HomePage {
         .subscribe((data) => {
             if(data.Search){
                 data.Search.forEach((m) => {
-                    if(this.latestMovies.length < 30) {
-                        this.latestMovies.push(m.imdbID);
+                    if(this.memory.length < 30) {
+                        this.memory.push(m.imdbID);
                         this.movies.push(m);
                     } else {
-                        this.latestMovies.shift();
-                        this.latestMovies.push(m.imdbID);
+                        this.memory.shift();
+                        this.memory.push(m.imdbID);
                         this.movies.push(m);
                     }                
                 });
@@ -87,10 +90,7 @@ export class HomePage {
                     .subscribe(movie => {
                             this.movies.push(movie);
                     });
-                    console.log(this.latestMovies.length)
                     this.latestMovies.shift();
-                    console.log("pop!");
-                    console.log(this.latestMovies.length);
                 }else{
                     return true;
                 }

@@ -76,4 +76,20 @@ export class SavedPage {
           });
     }
 
+    deleteFrom(key:string,id:any) {
+        this.stg.deteleValue({
+            username: this.user.username,
+            key: key,
+            id: id
+        }).then(() => {
+            console.log('sucess')
+        }).catch(() => {
+            console.log('err')
+        })
+        if(key == 'favorites') {
+            this.starredmovies = this.starredmovies.filter(s => s.imdbID != id)
+        } else {
+            this.savedmovies = this.savedmovies.filter(s => s.imdbID != id)
+        }
+    }
 }

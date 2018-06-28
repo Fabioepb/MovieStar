@@ -9,6 +9,7 @@ export class PopoverPage{
     constructor(public navCtlr: NavController){}
     
     toLogin(){
+        this.navCtlr.push(LoginPage);
         this.navCtlr.setRoot(LoginPage);
     }
 }

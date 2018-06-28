@@ -59,4 +59,22 @@ export class UserStorage {
             throw err;
         }
     }
+
+    async deteleValue({ username, key, id }): Promise<void> {
+        try {
+            let user = await this.stg.getItem(username);
+            let field = user[key];
+            if(Array.isArray(field)) {
+                // const values = field.filter((f,i) => i != indexValue);
+                this.setField({
+                    username,
+                    values: {
+                        [key]: field.filter((f) => f != id),
+                    },
+                });
+            }
+        } catch(err) {
+            throw err;
+        }
+    }
 }

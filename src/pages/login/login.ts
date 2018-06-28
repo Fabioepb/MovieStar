@@ -14,8 +14,8 @@ export class LoginPage {
 		public storage: NativeStorage, 
 		public toastCtrl: ToastController,
 	) {}
-	username: string = 'fabio';
-	password: string = '123';
+	username: string = 'Jnlbr';
+	password: string = '1234';
 	
 	logIn() {
 		this.navCtrl.setRoot(TabsPage,{
