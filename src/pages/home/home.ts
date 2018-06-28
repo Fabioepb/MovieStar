@@ -16,8 +16,9 @@ export class HomePage {
         username: string;
         password: string;
     };
+
     latestMovies = [];
-    memory =[];
+    memory = [];
     movies = [];
 
     constructor( 
@@ -37,10 +38,18 @@ export class HomePage {
         this.userStg.getField({
             username: this.user.username,
             key: 'latestMovies'
-        }).then(latestMovies => {
-            this.latestMovies = latestMovies;
-            this.memory = latestMovies;
+        }).then(userMovies => {
+            this.latestMovies = userMovies;
             this.fetchLatestMovies();
+        }).catch(err => {
+            console.log(JSON.stringify(err));
+        });
+
+        this.userStg.getField({
+            username: this.user.username,
+            key: 'latestMovies'
+        }).then(userMovies => {
+            this.memory = userMovies;
         }).catch(err => {
             console.log(JSON.stringify(err));
         });
@@ -81,16 +90,20 @@ export class HomePage {
                 });
             }
         });
+        console.log("memoria: " + this.memory);
+        console.log("latest: " + this.latestMovies);
     }
     fetchLatestMovies() {
         if(this.latestMovies.length > 0) {
+            console.log("latest: "+this.latestMovies);
+            console.log("memory"+this.memory);
             this.latestMovies.some((id,index) => {
                 if(index < 5){
                     this.api.getMovieById(id)
                     .subscribe(movie => {
                             this.movies.push(movie);
+                            this.latestMovies.shift();
                     });
-                    this.latestMovies.shift();
                 }else{
                     return true;
                 }
@@ -150,6 +163,7 @@ export class HomePage {
         }else{
             setTimeout(()=>{
                 console.log("Ran out of latest movies");
+                console.log(this.memory);
                 infiniteScroll.complete();  
             },1000);
         }
