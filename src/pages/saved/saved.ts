@@ -3,7 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UserStorage } from '../../helpers/userStorage';
 import { OmdbApi } from '../../api/omdb';
 import { PopoverController } from 'ionic-angular';
-import { PopoverPage } from '../popover/popover'
+import { PopoverPage } from '../popover/popover';
+import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-saved',
@@ -91,5 +92,8 @@ export class SavedPage {
         } else {
             this.savedmovies = this.savedmovies.filter(s => s.imdbID != id)
         }
+    }
+    toDetails(id:any){
+        this.navCtrl.push(DetailsPage,id);
     }
 }
