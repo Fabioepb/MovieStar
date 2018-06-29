@@ -26,14 +26,14 @@
     <div [ngSwitch]="option">
 
         <ion-list *ngSwitchCase="'saved'">
-          <ion-item *ngFor="let s of savedmovies">
-            <div text-wrap>{{s.Title}}</div>
+          <ion-item *ngFor="let s of saved">
+            <div text-wrap>{{s.title}}</div>
             <div ion-row justify-content-end>
-                <button ion-button clear icon-start small (click)="deleteFrom('saved', s.imdbID)">
+                <button ion-button clear icon-start small (click)="deleteFrom('saved', s.id)">
                     <ion-icon name='trash' color="danger"></ion-icon>
                     Delete
                   </button>
-                  <button ion-button clear icon-start small (click)="toDetails(s.imdbID);">
+                  <button ion-button clear icon-start small (click)="toDetails(s.id);">
                     <ion-icon name='information-circle'></ion-icon>
                     Details
                   </button>
@@ -42,14 +42,14 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'starred'">
-          <ion-item *ngFor="let f of starredmovies">
-            <div text-wrap>{{f.Title}}</div>
+          <ion-item *ngFor="let f of favorites">
+            <div text-wrap>{{f.title}}</div>
             <div ion-row justify-content-end>            
-                <button ion-button clear icon-start small (click)="deleteFrom('favorites', f.imdbID)">
+                <button ion-button clear icon-start small (click)="deleteFrom('favorites', f.id)">
                 <ion-icon name='trash' color="danger"></ion-icon>
                 Delete
               </button>
-              <button ion-button clear icon-start small (click)="toDetails(f.imdbID);">
+              <button ion-button clear icon-start small (click)="toDetails(f.id);">
                 <ion-icon name='information-circle'></ion-icon>
                 Details
               </button>

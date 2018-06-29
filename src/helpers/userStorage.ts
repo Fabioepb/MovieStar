@@ -47,11 +47,15 @@ export class UserStorage {
             let user = await this.stg.getItem(username);
             let field = user[key];
             if(Array.isArray(field)) {
-                this.setField({
-                    username,
-                    values: {
-                        [key]: [value, ...field]
-                    },
+                // this.setField({
+                //     username,
+                //     values: {
+                //         [key]: [value, ...field]
+                //     },
+                // });
+                return await this.stg.setItem(username, {
+                    ...user,
+                    [key]: [value, ...field]
                 });
             }
             return
@@ -64,15 +68,19 @@ export class UserStorage {
         try {
             let user = await this.stg.getItem(username);
             let field = user[key];
-            if(Array.isArray(field)) {
-                // const values = field.filter((f,i) => i != indexValue);
-                this.setField({
-                    username,
-                    values: {
-                        [key]: field.filter((f) => f != id),
-                    },
+            if(Array.isArray(field)) {                
+                // this.setField({
+                //     username,
+                //     values: {
+                //         [key]: field.filter((f) => f != id),
+                //     },
+                // });
+                return await this.stg.setItem(username, { 
+                    ...user, 
+                    [key]: field.filter((f) => f.id != id) 
                 });
             }
+            return
         } catch(err) {
             throw err;
         }

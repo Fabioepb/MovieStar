@@ -18,8 +18,8 @@ export class SavedPage {
     }
     saved = [];
     favorites = [];
-    savedmovies = [];
-    starredmovies = [];
+    // savedmovies = [];
+    // starredmovies = [];
     option: string = "saved";
 
     constructor( 
@@ -33,15 +33,16 @@ export class SavedPage {
     }
 
     ionViewDidEnter() {
-        try{
-            this.savedmovies = [];
-            this.starredmovies = [];
+        try{            
             this.stg.getField({
                 username: this.user.username,
                 key: 'saved'
             }).then(saved => {
-                this.fetchMovies(saved, this.savedmovies);
+                // this.fetchMovies(saved, this.savedmovies);
+                console.log(JSON.stringify(saved));
+                this.saved = saved;
             }).catch(err => {
+                console.log('error')
                 console.log(JSON.stringify(err));
             });
 
@@ -49,12 +50,15 @@ export class SavedPage {
                 username: this.user.username,
                 key: 'favorites'
             }).then(favorites => {
-                this.fetchMovies(favorites, this.starredmovies);
+                // this.fetchMovies(favorites, this.starredmovies);
+                console.log(JSON.stringify(favorites));
+                this.favorites = favorites;
             }).catch(err => {
+                console.log('error')
                 console.log(JSON.stringify(err));
             });
         }catch(err){
-            throw err;
+            console.log(err);
         }
     }
 
@@ -88,9 +92,9 @@ export class SavedPage {
             console.log('err')
         })
         if(key == 'favorites') {
-            this.starredmovies = this.starredmovies.filter(s => s.imdbID != id)
+            this.favorites = this.favorites.filter(s => s.id != id)
         } else {
-            this.savedmovies = this.savedmovies.filter(s => s.imdbID != id)
+            this.saved = this.saved.filter(s => s.id != id)
         }
     }
     toDetails(id:any){

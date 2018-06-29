@@ -113,13 +113,16 @@ export class HomePage {
         }
     }
 
-    addTo(key:string, movieId:string) {
+    addTo(key:string, movieId:string, movieTitle:string) {
         console.log(key)
         console.log(movieId);
         this.userStg.addValue({
             username: this.user.username,
             key: key,
-            value: movieId,
+            value: {
+                id: movieId,
+                title: movieTitle,
+            },
         }).then(() => {
             if(key == "favorites"){
                 this.toastAlert({
