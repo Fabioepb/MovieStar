@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
 import { OmdbApi } from '../../api/omdb';
 import { UserStorage } from '../../helpers/userStorage';
 import { ToastController} from 'ionic-angular';
@@ -11,6 +11,7 @@ import { DetailsPage } from '../details/details';
 })
 export class HomePage {
 
+    loading: Loading;
     search: string;
     user: {
         username: string;
@@ -26,7 +27,8 @@ export class HomePage {
         public params: NavParams,
         public toastCtrl: ToastController,
         private api: OmdbApi,
-        private userStg: UserStorage
+        private userStg: UserStorage,
+        private loadCtrl: LoadingController
     ) {
         this.user = params.data;
     }
@@ -69,9 +71,10 @@ export class HomePage {
     }
     onSearch() {
         this.movies = [];
+        this.showLoading();
         this.api.getMovies(this.search)
         .subscribe((data) => {
-            if(data.Search){
+            if(data.Search) {
                 data.Search.forEach((m) => {
                     if(this.memory.length < 30) {
                         this.memory.push(m.imdbID);
@@ -81,14 +84,15 @@ export class HomePage {
                         this.memory.push(m.imdbID);
                         this.movies.push(m);
                     }                
-                });
-            }else{
+                });                
+            } else {            
                 this.toastAlert({
                     message: 'No Results!',
                     duration: 1500,
                     position: "bottom",
                 });
             }
+            this.dismissLoad();
         });
         console.log("memoria: " + this.memory);
         console.log("latest: " + this.latestMovies);
@@ -170,6 +174,18 @@ export class HomePage {
                 infiniteScroll.complete();  
             },1000);
         }
+    }
+
+    showLoading() {
+        this.loading = this.loadCtrl.create({
+            content: 'Fetching data...',
+            dismissOnPageChange: true
+        });
+        this.loading.present();
+    }
+
+    dismissLoad() {
+        this.loading.dismiss();
     }
     
 }

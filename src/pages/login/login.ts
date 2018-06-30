@@ -14,29 +14,37 @@ export class LoginPage {
 		public storage: NativeStorage, 
 		public toastCtrl: ToastController,
 	) {}
-	username: string = 'Jnlbr';
-	password: string = '1234';
+	username: string = '';
+	password: string = '';
 	
 	logIn() {
-		this.navCtrl.setRoot(TabsPage,{
-			username: this.username,
-			password: this.password,
-		})
-		.then((exist) => {
-			if(exist) {
-				this.toastAlert({
-					message: 'You have Logged in!',
-					duration: 1800,
-					position: "top",
+		if(this.checkInputs()) {
+			this.navCtrl.setRoot(TabsPage, {
+				username: this.username,
+				password: this.password,
+			})
+				.then((exist) => {
+					if (exist) {
+						this.toastAlert({
+							message: 'You have Logged in!',
+							duration: 1800,
+							position: "top",
+						});
+					} else {
+						this.toastAlert({
+							message: 'Invalid username/password',
+							duration: 2200,
+							position: "top",
+						});
+					}
 				});
-			} else {
-				this.toastAlert({
-					message: 'Invalid username/password',
-					duration: 2200,
-					position: "top",
-				});
-			}
-		});
+		} else {
+			this.toastAlert({
+				message: 'Empty fields',
+				duration: 2000,
+				position: 'top',
+			});
+		}
 	}
 
 	toastAlert({ message, ...rest }) {
@@ -49,14 +57,11 @@ export class LoginPage {
 	toRegister() {
 		this.navCtrl.push(RegisterPage);
 	}
-
-	// Test functions... 
-	outPut() {
-		// this.storage.getItem('users').then((users) => {
-		// 	console.log(JSON.stringify(users))
-		// }).catch((err) => {
-		// 	console.log(JSON.stringify(err))
-		// });
-		this.storage.clear();
+	checkInputs() {
+		if (this.username == '' || this.password == '') {
+			return false
+		} else {
+			return true
+		}
 	}
 }
